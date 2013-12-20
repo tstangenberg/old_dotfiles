@@ -46,7 +46,10 @@ git() {
 # Install cask addon for brew - https://github.com/tstangenberg/homebrew-cask
 brew_cask() {	
 	if [[ $(brew tap) != *tstangenberg/cask* ]] ; then
-		brew tap tstangenberg/homebrew-cask
+		brew tap tstangenberg/cask
+	fi
+	if [[ $(brew tap) != *caskroom/versions* ]] ; then
+		brew tap caskroom/versions
 	fi
 	brew_install "brew-cask"
 }
@@ -75,10 +78,16 @@ alfred() {
 	cask_install "alfred"
 }
 
-# Installs a multi purpose editor
-sublime_text() {
-	cask_install "sublime-text"
+# Installs the multi purpose editor sublime-text
+editor() {
+	cask_install "sublime-text3"
 }
+
+# Installs the download manager speedtao
+download_manager() {
+	cask_install "speedtao"
+}
+
 
 xcodetools
 homebrew
@@ -87,5 +96,5 @@ brew_cask
 chrome
 vagrant
 alfred
-sublime_text
-
+editor
+download_manager
