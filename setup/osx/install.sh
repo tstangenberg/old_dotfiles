@@ -45,8 +45,8 @@ git() {
 
 # Install cask addon for brew - https://github.com/phinze/homebrew-cask
 brew_cask() {	
-	if [[ $(brew tap) != *phinze/cask* ]] ; then
-		brew tap phinze/homebrew-cask
+	if [[ $(brew tap) != *tstangenberg/cask* ]] ; then
+		brew tap tstangenberg/homebrew-cask
 	fi
 	brew_install "brew-cask"
 	FORMULA="brew-cask"
