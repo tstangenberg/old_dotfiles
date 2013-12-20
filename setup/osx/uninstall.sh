@@ -1,7 +1,6 @@
 
 xcode_tools(){
-	# just forget that the package is there...
-	sudo pkgutil --forget com.apple.pkg.DeveloperToolsCLI
+	# no uninstall for xcode ....
 }
 
 homebrew() {

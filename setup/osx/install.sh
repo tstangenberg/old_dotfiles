@@ -43,13 +43,12 @@ git() {
 	/usr/local/bin/git config --global user.email $MY_EMAIL
 }
 
-# Install cask addon for brew - https://github.com/phinze/homebrew-cask
+# Install cask addon for brew - https://github.com/tstangenberg/homebrew-cask
 brew_cask() {	
 	if [[ $(brew tap) != *tstangenberg/cask* ]] ; then
 		brew tap tstangenberg/homebrew-cask
 	fi
 	brew_install "brew-cask"
-	FORMULA="brew-cask"
 }
 
 # installs the given formula (1st parameter) with brew cask
