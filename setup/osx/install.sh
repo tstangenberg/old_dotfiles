@@ -4,13 +4,14 @@ MY_FULL_NAME="Thorben Stangenberg"
 MY_EMAIL="thorben@stangenberg.net"
 
 xcodetools() {
-	XCODECMD="$(pkgutil --pkg-info=com.apple.pkg.DeveloperToolsCLI)"
-	if [[ $XCODECMD == "" ]] ; then
+	# just check if gcc is available...
+	GCC="$(which gcc)"
+	if [[ $GCC == "" ]] ; then
 		echo "XCode Command Line Utils are required."
 		echo "Please install from https://developer.apple.com/downloads/index.action?=command%20line%20tools"
 		exit -1
 	else
-		echo "XCode Command Line Tools installed"
+		echo "XCode Command Line Tools installed / GCC available"
 	fi
 }
 
