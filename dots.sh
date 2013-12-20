@@ -12,7 +12,7 @@ done
 DOTSDIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 if [[ $OS == mac ]] ; then
-	echo "MACI - $DOTSDIR"
+	echo "Dotfiles Location: $DOTSDIR"
 	$DOTSDIR/setup/osx/install.sh
 else
 	echo "System not supported..."

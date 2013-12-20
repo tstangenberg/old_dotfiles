@@ -26,17 +26,6 @@ homebrew() {
 	# sudo chown -R thorben:admin /usr/local
 }
 
-# Install Git - http://git-scm.com/
-git() {
-	FORMULA="git"
-	CHECK=$(brew info $FORMULA)
-	if [[ $CHECK == *Not* ]] ; then
-		brew install $FORMULA
-	fi
-	/usr/local/bin/git config --global user.name $MY_FULL_NAME
-	/usr/local/bin/git config --global user.email $MY_EMAIL
-}
-
 # installs the given formula (1st parameter) with brew
 brew_install() {
 	FORMULA=$1
@@ -44,6 +33,13 @@ brew_install() {
 	if [[ $CHECK == *Not* ]] ; then		
 		brew install $FORMULA
 	fi
+}
+
+# Install Git - http://git-scm.com/
+git() {
+	brew_install "git"
+	/usr/local/bin/git config --global user.name $MY_FULL_NAME
+	/usr/local/bin/git config --global user.email $MY_EMAIL
 }
 
 # Install cask addon for brew - https://github.com/phinze/homebrew-cask
@@ -79,6 +75,11 @@ alfred() {
 	cask_install "alfred"
 }
 
+# Installs a multi purpose editor
+sublime_text() {
+	cask_install "sublime-text"
+}
+
 xcodetools
 homebrew
 git
@@ -86,4 +87,5 @@ brew_cask
 chrome
 vagrant
 alfred
+sublime_text
 
