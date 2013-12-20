@@ -1,5 +1,8 @@
 echo "system setup for osx..."
 
+MY_FULL_NAME="Thorben Stangenberg"
+MY_EMAIL="thorben@stangenberg.net"
+
 xcodetools() {
 	XCODECMD="$(pkgutil --pkg-info=com.apple.pkg.DeveloperToolsCLI)"
 	if [[ $XCODECMD == "" ]] ; then
@@ -11,6 +14,7 @@ xcodetools() {
 	fi
 }
 
+# Install Homebrew - http://brew.sh/
 homebrew() {
 	BREW="$(which brew)"
 	if [[ $BREW == "" ]] ; then
@@ -22,5 +26,64 @@ homebrew() {
 	# sudo chown -R thorben:admin /usr/local
 }
 
+# Install Git - http://git-scm.com/
+git() {
+	FORMULA="git"
+	CHECK=$(brew info $FORMULA)
+	if [[ $CHECK == *Not* ]] ; then
+		brew install $FORMULA
+	fi
+	/usr/local/bin/git config --global user.name $MY_FULL_NAME
+	/usr/local/bin/git config --global user.email $MY_EMAIL
+}
+
+# installs the given formula (1st parameter) with brew
+brew_install() {
+	FORMULA=$1
+	CHECK=$(brew info $FORMULA)
+	if [[ $CHECK == *Not* ]] ; then		
+		brew install $FORMULA
+	fi
+}
+
+# Install cask addon for brew - https://github.com/phinze/homebrew-cask
+brew_cask() {	
+	if [[ $(brew tap) != *phinze/cask* ]] ; then
+		brew tap phinze/homebrew-cask
+	fi
+	brew_install "brew-cask"
+	FORMULA="brew-cask"
+}
+
+# installs the given formula (1st parameter) with brew cask
+cask_install() {
+	FORMULA=$1
+	CHECK=$(brew cask info $FORMULA)
+	if [[ $CHECK == *Not* ]] ; then		
+		brew cask install $FORMULA
+	fi
+}
+
+# Install chrome browser - https://www.google.com/chrome
+chrome() {
+	cask_install "google-chrome"
+}
+
+# Install vagrant - https://www.vagrantup.com
+vagrant() {
+	cask_install "vagrant"
+}
+
+# Install Alfred - http://www.alfredapp.com/
+alfred() {
+	cask_install "alfred"
+}
+
 xcodetools
 homebrew
+git
+brew_cask
+chrome
+vagrant
+alfred
+
